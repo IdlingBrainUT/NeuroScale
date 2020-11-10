@@ -17,6 +17,9 @@ session_sizes = params["session_sizes"]
 session_names = params["session_names"]
 highpass = params["highpass"]
 bin_size = params["bin_size"]
+suffix = params["suffix"]
+if suffix == 1:
+    session_names = [filecore + "_" + sn for sn in session_names]
 
 print("Reading Ca imaging file...")
 data = pd.read_csv(filename, header=None).values

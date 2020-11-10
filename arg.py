@@ -1,7 +1,7 @@
 import sys
 
 def read_argv():
-    arg = {"highpass":0.1, "bin_size":1}
+    arg = {"highpass":0.1, "bin_size":1, "suffix":0}
     i = 1
     n = len(sys.argv)
     while i < n:
@@ -28,6 +28,9 @@ def read_argv():
         elif sys.argv[i] == "-bs":
             arg["bin_size"] = int(sys.argv[i+1])
             i += 2
+        elif sys.argv[i] == "-sf":
+            arg["suffix"] = 1
+            i += 1
         else:
             raise ValueError("Unknown argv!")
     return arg
