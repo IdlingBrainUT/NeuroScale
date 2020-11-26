@@ -36,7 +36,7 @@ if bin_size > 1:
     print("Binning Ca activity...")
     data_bin = binning_data_sessions(data_denoise, bin_size, session_sizes)
     plot_activity_hist(data_bin, filecore+"_dist_bin.png", "Distribution of ΔF/F (Binned)", positive=True)
-    session_sizes = [int(np.ceil(i)/bin_size) for i in session_sizes]
+    session_sizes = [int(np.ceil(i/bin_size)) for i in session_sizes]
 else:
     data_bin = data_denoise
 
