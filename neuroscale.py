@@ -49,5 +49,8 @@ print("Adding null cells...")
 data_null = add_null(data_scale, n_null)
 plot_activity_hist(data_null, filecore+"_dist_null.png", "Distribution of ΔF/F (Null)", positive=True, bins=b, num_cells=-4)
 
+print("Removing weak signals...")
+data_null[data_null < 0.01] = 0
+
 print("Making save files...")
 save_sessions(data_null, session_sizes, session_names)

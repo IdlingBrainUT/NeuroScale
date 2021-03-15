@@ -16,7 +16,9 @@ syntax -> (number of sessions) (name of session 1) (name of session 2) ...
 
 -bs: bin size (default: 1)
 
--sf: suffix mode (default: False).
+-sf: suffix mode (default: False)
+
+-nu: number of null cells (default: 100)
 
 [example]
 
