@@ -7,9 +7,9 @@ def add_null(data:np.ndarray, null_size=100):
     pr_mu = pr.mean()
     pr_sigma = pr.std()
 
-    null_pr = np.random.normal(size=100, loc=pr_mu, scale=pr_sigma)
-    null_uni = np.random.random((n_row, 100))
-    null_exp = -np.log(np.random.random((n_row ,100)))
+    null_pr = np.random.normal(size=null_size, loc=pr_mu, scale=pr_sigma)
+    null_uni = np.random.random((n_row, null_size))
+    null_exp = -np.log(np.random.random((n_row ,null_size)))
     null = null_exp
     null[null_uni >= null_pr] = 0
     return np.hstack((data, null))
