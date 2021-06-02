@@ -15,4 +15,5 @@ def scale_data_session(data:np.ndarray, session_sizes:list):
         d = data[row:row+ni, :]
         lamb = ni / (d.sum(axis=0) + epsilon)
         stack.append(d * lamb)
+        row += ni
     return np.vstack(stack)
