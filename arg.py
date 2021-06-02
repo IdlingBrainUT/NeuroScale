@@ -1,7 +1,7 @@
 import sys
 
 def read_argv():
-    arg = {"highpass":0.1, "bin_size":1, "suffix":0, "n_null":100}
+    arg = {"highpass":0.1, "bin_size":1, "suffix":0, "n_null":100, "fmt":5}
     i = 1
     n = len(sys.argv)
     while i < n:
@@ -33,6 +33,9 @@ def read_argv():
             i += 1
         elif sys.argv[i] == "-nu":
             arg["n_null"] = int(sys.argv[i+1])
+            i += 2
+        elif sys.argv[i] == "-fmt":
+            arg["fmt"] = int(sys.argv[i+1])
             i += 2
         else:
             raise ValueError("Unknown argv!")

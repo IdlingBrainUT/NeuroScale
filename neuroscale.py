@@ -7,7 +7,7 @@ from denoise import remove_bg_noise
 from output import save_sessions
 from null import add_null
 from plot import plot_single_cell, plot_activity_hist
-from scale import scale_data
+from scale import scale_data, scale_data_session
 
 print("Reading params...")
 params = read_argv()
@@ -19,6 +19,7 @@ highpass = params["highpass"]
 bin_size = params["bin_size"]
 suffix = params["suffix"]
 n_null = params["n_null"]
+fmt = params["fmt"]
 if suffix == 1:
     session_names = [filecore + "_" + sn for sn in session_names]
 
@@ -42,15 +43,16 @@ else:
     data_bin = data_denoise
 
 print("Scaling Ca activity...")
-data_scale = scale_data(data_bin)
+#data_scale = scale_data(data_bin)
+data_scale = scale_data_session(data_bin, session_sizes)
 b = plot_activity_hist(data_scale, filecore+"_dist_scale.png", "Distribution of ΔF/F (Scaled)", positive=True)
 
 print("Adding null cells...")
 data_null = add_null(data_scale, n_null)
 plot_activity_hist(data_null, filecore+"_dist_null.png", "Distribution of ΔF/F (Null)", positive=True, bins=b, num_cells=-4)
 
-print("Removing weak signals...")
-data_null[data_null < 0.01] = 0
+#print("Removing weak signals...")
+#data_null[data_null < 0.01] = 0
 
 print("Making save files...")
-save_sessions(data_null, session_sizes, session_names)
+save_sessions(data_null, session_sizes, session_names, fmt)
