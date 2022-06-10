@@ -13,7 +13,7 @@ def scale_data_session(data:np.ndarray, session_sizes:list):
     epsilon = mu * 1e-7
     for ni in session_sizes:
         d = data[row:row+ni, :]
-        lamb = ni / (d.sum(axis=0) + epsilon)
-        stack.append(d * lamb)
+        lamb = (d > 0).sum(axis=0) / (d.sum(axis=0) + epsilon)
+        stack.append(d * lamb * 10) # 10
         row += ni
     return np.vstack(stack)
